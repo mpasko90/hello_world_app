@@ -1,0 +1,17 @@
+name: Package Project
+
+# Controls when the workflow will run
+on: [ push ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3
+        uses: actions/setup-python@v3
+      - name: Install deps
+        run: pip3 install -r requirements.txt      
+      - name: Run tests
+        run: PYTHONPATH=. py.test --verbose -s
